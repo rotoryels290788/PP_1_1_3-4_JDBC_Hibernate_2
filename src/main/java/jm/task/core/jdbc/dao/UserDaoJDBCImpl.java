@@ -7,17 +7,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class UserDaoJDBCImpl implements UserDao {
     private final Connection connection = Util.getConnection();
-    private String com;
-    public UserDaoJDBCImpl() {
 
+    public UserDaoJDBCImpl() {
     }
 
     @Override
     public void createUsersTable() {
-
-        com = "CREATE TABLE IF NOT EXISTS kata_test.duble (id INT PRIMARY KEY AUTO_INCREMENT , Name VARCHAR(60), lastName VARCHAR(60),age int)";
+        String com = "CREATE TABLE IF NOT EXISTS test_kata. duble (id INT PRIMARY KEY AUTO_INCREMENT , Name VARCHAR(60), lastName VARCHAR(60),age int)";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(com);
             System.out.println("Таблица создана");
@@ -29,7 +28,7 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void dropUsersTable() {
 
-        com = "DROP TABLE IF EXISTS kata_test.duble";
+        String com = "DROP TABLE IF EXISTS test_kata. duble";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(com);
             System.out.println("Таблица удалена");
@@ -40,7 +39,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        com = ("INSERT INTO kata_test.duble (name, lastName, age) VALUES (?,?,?)");
+
+        String com = ("INSERT INTO test_kata.duble (name, lastName, age) VALUES (?,?,?)");
         try (PreparedStatement preparedStatement = connection.prepareStatement(com)) {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
@@ -54,7 +54,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        com = "DELETE FROM kata_test.duble WHERE id = ?";
+        String com = "DELETE FROM kata_test.duble WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(com)) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
@@ -67,7 +67,7 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
-        com = "SELECT * FROM kata_test.duble";
+        String com = "SELECT * FROM kata_test.duble";
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(com);
             while (resultSet.next()) {
@@ -87,7 +87,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        com = "TRUNCATE kata_test.duble";
+        String com = "TRUNCATE kata_test.duble";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(com);
             System.out.println("Очистка полей таблицы прошла успешно");
@@ -97,4 +97,6 @@ public class UserDaoJDBCImpl implements UserDao {
         }
 
     }
+
 }
+

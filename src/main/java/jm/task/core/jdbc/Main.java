@@ -1,8 +1,5 @@
 package jm.task.core.jdbc;
-
-import com.sun.jdi.connect.spi.Connection;
 import jm.task.core.jdbc.service.UserServiceImpl;
-
 public class Main {
     public static void main(String[] args) {
         UserServiceImpl user = new UserServiceImpl();
@@ -14,5 +11,6 @@ public class Main {
         user.getAllUsers();
         user.cleanUsersTable();
         user.dropUsersTable();
+
     }
 }
