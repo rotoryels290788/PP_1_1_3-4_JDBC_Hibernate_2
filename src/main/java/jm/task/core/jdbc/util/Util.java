@@ -42,7 +42,8 @@ public class Util {
                 prop.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
                 prop.put(Environment.SHOW_SQL, "true");
                 prop.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-
+                prop.put(Environment.HBM2DDL_AUTO, "");
+                
                 configuration.setProperties(prop);
                 configuration.addAnnotatedClass(User.class);
 
